@@ -1,0 +1,21 @@
+#!/bin/bash -x
+
+REPONAME=modeler
+WEBHOST=ftp.webspace.virginmedia.com
+USERNAME=
+PASSWORD=
+ARCH=$(uname -m)
+
+cp $1 ${HOME}/Repo/${ARCH}
+cd ${HOME}/Repo/${ARCH}
+
+repo-add ${REPONAME}.db.tar.xz $1
+
+cat << EOF | ftp -n ${WEBHOST}
+user ${USERNAME} ${PASSWORD}
+cd ${REPONAME}/${ARCH}
+hash
+put ${REPONAME}.db
+put ${REPONAME}.db.tar.xz
+put $1
+EOF
