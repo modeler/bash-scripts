@@ -5,10 +5,10 @@ WEBHOST=ftp.webspace.virginmedia.com
 USERNAME=
 PASSWORD=
 ARCH=$(uname -m)
-REPO=${HOME}/Repo
+LOCALDIR=${HOME}/Repo
 
-cp $1 ${HOME}/${REPO}/${ARCH}
-cd ${HOME}/${REPO}/${ARCH}
+cp $1 ${LOCALDIR}/${ARCH}
+cd ${LOCALDIR}/${ARCH}
 
 repo-add ${REPONAME}.db.tar.xz $1
 
